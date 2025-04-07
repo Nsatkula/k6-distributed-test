@@ -17,9 +17,9 @@ export const options = {
     Scenario_1: {
       executor: 'ramping-vus',
       stages: [
-        { target: 2, duration: '10s' }, // Ramp up to 2 VUs
-        { target: 2, duration: '50s' }, // Maintain 2 VUs for 1 minute
-        { target: 0, duration: '10s' }, // Ramp down to 0 VUs
+        { target: 20, duration: '30s' }, // Ramp up to 2 VUs
+        { target: 20, duration: '1m' }, // Maintain 2 VUs for 1 minute
+        { target: 0, duration: '30s' }, // Ramp down to 0 VUs
       ],
       gracefulStop: '30s',
       exec: 'scenario_1', // Reference the exported function
