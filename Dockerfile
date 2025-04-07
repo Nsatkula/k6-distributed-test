@@ -1,17 +1,20 @@
-# Use a specific Node.js version as the base image
-FROM node:14
+# Use the official K6 image for Linux
+FROM grafana/k6:latest
+
+# Switch to root to install packages
+USER root
+
+# Install Git
+RUN apk add --no-cache git
+
+# Switch back to the K6 user
+USER k6
 
 # Set the working directory inside the container
-WORKDIR /app
+WORKDIR /scripts
 
-# Copy package.json and package-lock.json (if available)
-COPY package*.json ./
+# Clone the repository containing your K6 script
+RUN git clone https://github.com/Nsatkula/k6-distributed-test.git /scripts
 
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the application files
-COPY . .
-
-# Define the command to run the tests
-CMD ["npm", "test"]
+# Run the K6 script
+CMD ["sh", "-c", "k6 run C:\Users\nitish.satkula\Downloads\K6Scripts"]
